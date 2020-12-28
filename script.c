@@ -5,9 +5,10 @@
 
 int main (int argc, char *argv[])
 {
-	if (argc > 1)
+	if (argc > 2)
 	{
-		printf("too many arguments");
+		printf("Too many arguments\n");
+		return 1;
 	}
 
 	int res;
@@ -19,11 +20,11 @@ int main (int argc, char *argv[])
 
 	if (handle == NULL)
 	{
-		printf("unable to open device");
+		printf("Unable to open device\n");
 	}
 	else
 	{
-		printf("device open!");
+		printf("Device open!\n");
 	}
 	
 		
@@ -36,15 +37,15 @@ int main (int argc, char *argv[])
 	unsigned char buf[2];
 	buf[0] = 6;
 
-	if (argc == 0)
+	if (argc == 1) //no argument, default to max brightness
 	{	
 		buf[1] = 240;
-		printf("max brightness");
+		printf("Max brightness\n");
 	}
 	else
 	{
 		buf[1] = atoi(argv[1]) * 16;
-		printf("adjust brightness");
+		printf("Adjust brightness to %i\n", buf[1]/16);
 	}
 
 	res = hid_write(handle, buf, buflen);
