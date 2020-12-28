@@ -44,8 +44,14 @@ int main (int argc, char *argv[])
 	}
 	else
 	{
-		buf[1] = atoi(argv[1]) * 16;
-		printf("Adjust brightness to %i\n", buf[1]/16);
+		int b_val = atoi(argv[1]);
+		if (b_val < 0 || b_val > 15)
+		{
+			printf("Brightness out of range! Choose between 0 and 15 only!\n");
+			return 1;
+		}
+		buf[1] = b_val * 16;
+		printf("Adjust brightness to %i\n", b_val);
 	}
 
 	res = hid_write(handle, buf, buflen);
