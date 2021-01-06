@@ -21,6 +21,7 @@ int main (int argc, char *argv[])
 	if (handle == NULL)
 	{
 		printf("Unable to open device\n");
+		return 1;
 	}
 	else
 	{
