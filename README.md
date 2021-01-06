@@ -1,6 +1,8 @@
 # X330 FHD/2K brightness adjustment
 ## agan FHD/2K kit brightness adjustment
 
+GPL licensed
+
 A work-in-progress.
 Planning to implement this with a simple script and install as a systemd service. As such, other systemd-less init distros will not be supported. Then again if you're running without systemd you'll know what you're doing ;) 
 
@@ -11,7 +13,8 @@ To run:
 make
 ```
 ```bash
-./script
+./script 0 //change brightness to 0
+./script 15 //change brightness to 15
 ```
 
 To-do:
