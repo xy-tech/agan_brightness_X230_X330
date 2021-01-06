@@ -1,4 +1,5 @@
-# X330 X230 agan FHD/2K Linux brightness adjustment / X330 X230 FHD/2K 阿甘套件 亮度调节linux程序
+# X330 X230 agan FHD/2K Linux brightness adjustment 
+# X330 X230 FHD/2K 阿甘套件 亮度调节linux程序
 
 GPL licensed
 
