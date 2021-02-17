@@ -71,10 +71,11 @@ int main (int argc, char *argv[])
 		buf[1] = 240; //max brightness 15*16=240
 		
 		printf("INSTRUCTIONS TO USE: \n");
-		printf("sudo ./script [BRIGHTNESS VALUE IN INTEGERS]\n");
+		printf("\nsudo ./script [BRIGHTNESS VALUE IN INTEGERS]\n");
 		printf("[BRIGHTNESS VALUE IN INTEGERS] can be between 1 to 16.\n");
-		printf("Any value below 1 reduces brightness by 1 and any value above 16 increases brightness by 1\n");
-		printf("Max brightness\n");
+		printf("\nAny value below 1 reduces brightness by 1 and any value above 16 increases brightness by 1\n");
+		printf("Any characters or string typed in will be evaulated as 0\n");
+		printf("Adjusted to max brightness\n");
 	}
 	
 	else
