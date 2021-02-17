@@ -41,18 +41,41 @@ int main (int argc, char *argv[])
 	if (argc == 1) //no argument, default to max brightness
 	{	
 		buf[1] = 240;
+		printf("INSTRUCTIONS TO USE: \n");
+		printf("sudo ./script [BRIGHTNESS VALUE IN INTEGERS]\n");
+		printf("[BRIGHTNESS VALUE IN INTEGERS] can be between 1 to 16.\n");
+		printf("Any value below 1 reduces brightness by 1 and any value above 16 increases brightness by 1\n");
 		printf("Max brightness\n");
 	}
 	else
 	{
 		int b_val = atoi(argv[1]);
-		if (b_val < 0 || b_val > 15)
+		if (b_val < 1 || b_val > 16)
 		{
-			printf("Brightness out of range! Choose between 0 and 15 only!\n");
-			return 1;
+			buf[0] = 4;
+			res = hid_get_feature_report(handle, buf, buflen);
+			printf("Current brightness = %i\n", buf[1]);
+			if ((buf[1] == 0 && b_val < 1) || (buf[1] == 15 && b_val > 16))
+			{
+				printf("Not adjusting brightness\n");
+				return 0;
+			}
+			else if (b_val < 1)
+			{
+				buf[1] = (buf[1] - 1) * 16;
+			}
+			else	
+			{
+				buf[1] = (buf[1] + 1) * 16;
+			}
+			printf("Adjust brightness to %i\n", buf[1]);
+			buf[0] = 6;
 		}
-		buf[1] = b_val * 16;
-		printf("Adjust brightness to %i\n", b_val);
+		else
+		{
+			buf[1] = (b_val - 1) * 16;
+			printf("Adjust brightness to %i\n", b_val);
+		}
 	}
 
 	res = hid_write(handle, buf, buflen);
