@@ -70,12 +70,17 @@ int main (int argc, char *argv[])
 	{	
 		buf[1] = 240; //max brightness 15*16=240
 		
-		printf("\nINSTRUCTIONS TO USE: \n");
-		printf("\nsudo ./script [BRIGHTNESS VALUE IN INTEGERS]\n");
-		printf("[BRIGHTNESS VALUE IN INTEGERS] follows the instructions below\n");
-		printf("\nAny value below 1 reduces brightness by 1 and any value above 16 increases brightness by 1.\n");
-		printf("Any characters or string typed in will be evaulated as 0.\n");
-		printf("\nAdjusted to max brightness.\n");
+		printf("\nBrightness adjustment script for agan X230 FHD/2K adapter boards\n");
+		printf("\nOptions:\n");
+		printf("\n		<int>\n");
+		printf("\n		Brightness value in integer, from 0 to 15\n");
+		printf("\n		Example:\n");
+		printf("\n				sudo ./script 15 //brightness changed to 15 (highest brightness)\n");
+		printf("\n				sudo ./script 0 //brightness changed to 0 (lowest brightness)\n");
+		printf("\n				sudo ./script 5 //brightness changed to 5\n");
+		printf("\n				sudo ./script //brightness defaults to 15 (max brightness)\n");
+		printf("\n				sudo ./script -1 //brightness reduces by 1 level for any input <= -1\n");
+		printf("\n				sudo ./script 16 //brightness increases by 1 level for any input >= 16\n");
 	}
 	
 	else
