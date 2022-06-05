@@ -26,3 +26,39 @@ sudo ./script 15 //change brightness to 15 (highest brightness level) 亮度调�
 
 To-do:
 * Implement this with ACPI calls so the script can be as portable as possible.
+
+Control brightness with acpid:
+```bash
+# copy brightness tool to /usr/local/sbin
+sudo cp script /usr/local/sbin/brightness
+
+# create folder for acpi action script
+sudo -i
+mkdir /etc/acpi/actions
+
+# create acpid event handler script that calls brightness script
+cat << EOF > /etc/acpi/actions/brightness.sh
+#!/bin/sh                                                                       
+case "$2" in
+    BRTDN)
+        /usr/local/sbin/brightness -1
+        ;;
+    BRTUP)
+        /usr/local/sbin/brightness 17
+        ;;
+    *)
+        logger "ACPI action undefined: $2"
+        ;;
+esac
+EOF
+
+# create acpid ruleset for brightness event
+cat << EOF > /etc/acpi/events/brightness
+event=video/brightness*
+action=/etc/acpi/actions/brightness.sh %e
+EOF
+
+# start or reload acpid
+systemctl enable acpid --now
+systemctl reload acpid
+```
